@@ -5,7 +5,7 @@ import TextInput from "../ui/text-input";
 import { nunito_sans } from "../fonts";
 import Button from "../ui/button";
 
-export default function Login() {
+export default function Signup() {
 
   const initialSignupState = {
     errors: {

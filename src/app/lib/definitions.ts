@@ -38,7 +38,8 @@ export type ActionState<T extends z.ZodType> = {
         (password) => /^(?=.*[A-Z])(?=.*\d).+$/.test(password),
         { message: "Password must contain at least one number and one capital letter" }
       ),
-    confirmPassword: z.string()
+    confirmPassword: z.string(),
+    code: z.string()
   }).refine(data => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"]

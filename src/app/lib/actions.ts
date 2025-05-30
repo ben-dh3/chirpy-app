@@ -16,7 +16,7 @@ import { canEvolve, getDailyGoal, isMissedDay } from "./utils";
 // signup
 
 export async function signup(
-  prevState: any, 
+  prevState: SignupActionState, 
   formData: FormData
 ) : Promise<SignupActionState> {
   const supabase = await createClient();
@@ -126,7 +126,7 @@ export async function resetPassword(
   const supabase = await createClient();
 
   const validated = ResetPasswordSchema.safeParse(Object.fromEntries(formData));
-  
+
   if (!validated.success) {
     return { 
       errors: validated.error.flatten().fieldErrors,
@@ -134,27 +134,30 @@ export async function resetPassword(
     };
   }
 
-  const { password } = validated.data;
+  const { password, code } = validated.data;
+  
+  try{
 
-  try {
+    const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+    if (exchangeError) {
+      return { 
+        errors: null, 
+        message: "Invalid or expired reset code." 
+      };
+    }
     const { error } = await supabase.auth.updateUser({ password });
-    
     if (error) {
       return { 
         errors: null, 
         message: error.message 
       };
     }
-    
+  } catch {
     return {
-      message: "Password reset successful."
+      message: "Password reset unsuccessful."
     }
-  } catch (err) {
-    return { 
-      errors: null, 
-      message: 'Error updating password.' 
-    };
   }
+  redirect('/login?message=Password reset successful');
 }
 
 // streak and time tracking
