@@ -2,6 +2,7 @@ import { evolvePet } from "../lib/actions";
 import { canEvolve, getDailyGoal } from "../lib/utils";
 import { getPetData } from "../lib/dal";
 import PetModel from "./pet-model";
+import EvolveButton from "./evolve-button";
 
 export default async function Pet({ userId }: { userId: string }) {
   const petData = await getPetData(userId);
@@ -39,15 +40,15 @@ export default async function Pet({ userId }: { userId: string }) {
     <div className="">
       {/* <PetModel stage={petData.stage} /> */}
       <PetModel stage={petData.stage} mood={mood} />
+      {canEvolve(petData.stage, petData.total_minutes) && (
+        <form className="flex items-center justify-center" action={evolvePet.bind(null, userId)}>
+          <EvolveButton />
+        </form>
+      )}
       <p>Stage: {petData.stage}</p>
       <p>Daily Goal Progress: {dailyProgress >= 0 ? dailyProgress + " min left" : "Daily Goal Completed"}</p>
       <p>Time Spent Today: {dailyTime} min</p>
       <p>Streak: {petData.streak} days</p>
-      {canEvolve(petData.stage, petData.total_minutes) && (
-        <form action={evolvePet.bind(null, userId)}>
-          <button className="p-4 rounded-2xl cursor-pointer" type="submit">Evolve Pet</button>
-        </form>
-      )}
     </div>
   );
 }
