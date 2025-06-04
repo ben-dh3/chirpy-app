@@ -8,7 +8,7 @@ export default function Nav() {
                 'use server';
                 await logOut();
             }}>
-                <button>
+                <button className="text-sm cursor-pointer bg-primary-100 text-primary-400 p-2 rounded-2xl drop-shadow-regular">
                     <div>Sign Out</div>
                 </button>
             </form>

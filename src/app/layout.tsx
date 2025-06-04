@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sen.className} antialiased`}
+        className={`${sen.className} antialiased p-12`}
       >
         {children}
       </body>

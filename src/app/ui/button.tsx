@@ -21,7 +21,7 @@ export default function Button({ link, text, style, type = "button" }: ButtonPro
 
   const buttonStyle = style === "bold" ? bold : regular;
 
-  const buttonClasses = `w-full p-4 rounded-2xl ${buttonStyle.shadow} ${buttonStyle.bg_colour} ${buttonStyle.text_colour}`;
+  const buttonClasses = `cursor-pointer w-full p-4 rounded-2xl ${buttonStyle.shadow} ${buttonStyle.bg_colour} ${buttonStyle.text_colour}`;
 
   if (link) {
     return (

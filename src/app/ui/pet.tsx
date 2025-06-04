@@ -2,7 +2,8 @@ import { evolvePet } from "../lib/actions";
 import { canEvolve, getDailyGoal } from "../lib/utils";
 import { getPetData } from "../lib/dal";
 import PetModel from "./pet-model";
-import EvolveButton from "./evolve-button";
+import Button from "./button";
+import Timer from "./timer";
 
 export default async function Pet({ userId }: { userId: string }) {
   const petData = await getPetData(userId);
@@ -11,8 +12,6 @@ export default async function Pet({ userId }: { userId: string }) {
   const dailyTime = petData.daily_minutes;
 
   // calculate mood
-  // textures: happy, sad, angry, shock, egg
-  // Todos:
   // 1) happy: daily goal completed
   // 2) sad: before 12 and daily goal not completed
   // 3) angry: after 12 and daily goal not completed
@@ -26,23 +25,22 @@ export default async function Pet({ userId }: { userId: string }) {
   if (petData.stage === "egg") {
     mood = "egg";
   } else if (dailyProgress <= 0) {
-    // Happy: daily goal completed
     mood = "happy";
   } else if (hours < 12) {
-    // Sad: before 12 and daily goal not completed
     mood = "sad";
   } else {
-    // Angry: after 12 and daily goal not completed
     mood = "angry";
   }
 
   return (
-    <div className="">
-      {/* <PetModel stage={petData.stage} /> */}
+    <div className="space-y-4">
       <PetModel stage={petData.stage} mood={mood} />
+      <Timer userId={userId} dailyGoal={getDailyGoal(petData.stage)} />
       {canEvolve(petData.stage, petData.total_minutes) && (
         <form className="flex items-center justify-center" action={evolvePet.bind(null, userId)}>
-          <EvolveButton />
+          <button type="submit" className="cursor-pointer w-full bg-starfield text-white p-2 rounded-2xl">
+            Evolve
+          </button>
         </form>
       )}
       <p>Stage: {petData.stage}</p>

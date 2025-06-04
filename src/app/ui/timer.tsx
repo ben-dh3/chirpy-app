@@ -20,30 +20,37 @@ export default function Timer({ userId, dailyGoal }: { userId: string; dailyGoal
   const completedMinutes = Math.floor((dailyGoal * 60 - time) / 60);
 
   return (
-    <div>
+    <div className="space-y-4">
       <p>
         Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
       </p>
       {message && <p className="text-green-500">{message}</p>}
-      <button onClick={() => setIsRunning(true)} disabled={isRunning || time === 0}>
+      <div className="flex justify-between gap-4">
+        <button 
+        className="cursor-pointer w-full bg-secondary-400 text-white p-2 rounded-2xl drop-shadow-bold" 
+        onClick={() => setIsRunning(true)} disabled={isRunning || time === 0}
+        >
         Start
-      </button>
-      <button
-        onClick={async () => {
-          setIsRunning(false);
-          if (completedMinutes > 0) {
-            const result = await updatePetProgress(userId, completedMinutes);
-            if (result.success && result.goalCompleted) {
-              setMessage("Daily Goal Completed!");
+        </button>
+        <button
+        className="cursor-pointer w-full bg-primary-100 text-primary-400 p-2 rounded-2xl drop-shadow-regular"
+          onClick={async () => {
+            setIsRunning(false);
+            if (completedMinutes > 0) {
+              const result = await updatePetProgress(userId, completedMinutes);
+              if (result.success && result.goalCompleted) {
+                setMessage("Daily Goal Completed!");
+              }
             }
-          }
-          setTime(dailyGoal * 60); 
-          setTimeout(() => setMessage(null), 3000);
-        }}
-        disabled={!isRunning}
-      >
-        Stop
-      </button>
+            setTime(dailyGoal * 60); 
+            setTimeout(() => setMessage(null), 3000);
+          }}
+          disabled={!isRunning}
+        >
+          Stop
+        </button>
+      </div>
+      
     </div>
   );
 }
