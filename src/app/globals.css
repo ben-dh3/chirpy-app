@@ -2,18 +2,10 @@
 
 @theme {
     --color-secondary-400: #53BA46;
+    --color-secondary-500: #D9A653;
     --color-primary-100: #F0F0F0;
     --color-primary-400: #818181;
     --drop-shadow-bold: 0 5px 0 rgba(61, 128, 59, 1);
     --drop-shadow-regular: 0 5px 0 rgba(202, 202, 202, 1);
-    --bg-image: url("/starfield.webp");
-}
-
-.bg-starfield {
-    background-image: var(--bg-image);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    overflow: hidden;
+    --drop-shadow-evolve: 0 5px 0 rgba(185, 134, 24, 1);
 }
