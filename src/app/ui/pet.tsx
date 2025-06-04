@@ -2,7 +2,6 @@ import { evolvePet } from "../lib/actions";
 import { canEvolve, getDailyGoal } from "../lib/utils";
 import { getPetData } from "../lib/dal";
 import PetModel from "./pet-model";
-import Button from "./button";
 import Timer from "./timer";
 
 export default async function Pet({ userId }: { userId: string }) {
