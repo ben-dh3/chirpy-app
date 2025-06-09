@@ -26,12 +26,14 @@ export default function Timer({ userId, dailyGoal }: { userId: string; dailyGoal
       </p>
       {message && <p className="text-green-500">{message}</p>}
       <div className="flex justify-between gap-4">
+        { !isRunning ? 
         <button 
         className="cursor-pointer w-full bg-secondary-400 text-white p-2 rounded-2xl drop-shadow-bold" 
         onClick={() => setIsRunning(true)} disabled={isRunning || time === 0}
         >
         Start
         </button>
+        :
         <button
         className="cursor-pointer w-full bg-primary-100 text-primary-400 p-2 rounded-2xl drop-shadow-regular"
           onClick={async () => {
@@ -49,8 +51,8 @@ export default function Timer({ userId, dailyGoal }: { userId: string; dailyGoal
         >
           Stop
         </button>
+      }
       </div>
-      
     </div>
   );
 }
