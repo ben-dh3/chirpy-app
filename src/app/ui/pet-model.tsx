@@ -12,6 +12,8 @@ interface ModelProps {
   mood: Emotion;
 }
 
+
+
 function Model({ stage, mood }: ModelProps) {
   const { scene } = useGLTF(`/models/${stage}.glb`);
   const groupRef = useRef<THREE.Group>(null);
@@ -140,7 +142,7 @@ export default function PetModel({ stage, mood }: ModelProps) {
       camera={{ zoom: 100, position: [0, 0, 100] }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={2} />
+          <ambientLight intensity={2.5} />
           <directionalLight position={[10, 10, 5]} intensity={1.5} />
           <Model stage={stage} mood={mood} />
         </Suspense>
