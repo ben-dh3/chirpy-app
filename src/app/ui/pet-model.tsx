@@ -23,42 +23,12 @@ function Model({ stage, mood }: ModelProps) {
   const [isPlayingShock, setIsPlayingShock] = useState(false);
 
   const texturePaths: Record<Emotion, string[]> = {
-    happy: [
-      "/textures/happy_1.png",
-      "/textures/happy_2.png",
-      "/textures/happy_3.png",
-      "/textures/happy_4.png",
-      "/textures/happy_5.png",
-      "/textures/happy_6.png",
-      "/textures/happy_7.png",
-      "/textures/happy_8.png",
-      "/textures/happy_9.png",
-    ],
-    sad: [
-      "/textures/sad_1.png",
-      "/textures/sad_2.png",
-      "/textures/sad_3.png",
-      "/textures/sad_4.png",
-      "/textures/sad_5.png",
-      "/textures/sad_6.png",
-    ],
-    shock: [
-      "/textures/shock_1.png",
-      "/textures/shock_2.png",
-      "/textures/shock_3.png",
-      "/textures/shock_4.png",
-      "/textures/shock_5.png",
-    ],
-    angry: [
-      "/textures/angry_1.png",
-      "/textures/angry_2.png",
-      "/textures/angry_3.png",
-    ],
-    egg: [
-      "/textures/egg_1.png",
-      "/textures/egg_2.png",
-    ],
-  };
+    happy: ["/textures/happy_1.png", "/textures/happy_2.png", "/textures/happy_3.png", "/textures/happy_4.png", "/textures/happy_5.png", "/textures/happy_6.png", "/textures/happy_7.png", "/textures/happy_8.png", "/textures/happy_9.png"],
+    sad: ["/textures/sad_1.png", "/textures/sad_2.png", "/textures/sad_3.png", "/textures/sad_4.png", "/textures/sad_5.png", "/textures/sad_6.png"],
+    shock: ["/textures/shock_1.png", "/textures/shock_2.png", "/textures/shock_3.png", "/textures/shock_4.png", "/textures/shock_5.png"],
+    angry: ["/textures/angry_1.png", "/textures/angry_2.png", "/textures/angry_3.png"],
+    egg: ["/textures/egg_1.png", "/textures/egg_2.png"],
+};
 
   const happyTextures = useTexture(texturePaths.happy);
   const sadTextures = useTexture(texturePaths.sad);
@@ -95,17 +65,7 @@ function Model({ stage, mood }: ModelProps) {
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const playEmotion = useCallback((emotion: Emotion, isTemporary: boolean = false) => {
-    // gltf animations
-    // Object.values(actions).forEach(action => action?.stop());
-    
-    // const action = actions[emotion];
-    // if (action) {
-    //   action.reset().fadeIn(0.2).play();
-    //   action.setLoop(THREE.LoopOnce, 1);
-    //   action.clampWhenFinished = true;
-    // }
-    
+  const playEmotion = useCallback((emotion: Emotion, isTemporary: boolean = false) => { 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -160,9 +120,9 @@ function Model({ stage, mood }: ModelProps) {
       {meshReady && faceMeshRef.current && (
         <Decal
         mesh={faceMeshRef}
-        position={[0, 0, 1.0]}
+        position={[0, 0, 0.5]}
         rotation={[0, 0, 0]}
-        scale={0.7}
+        scale={0.8}
         map={textures[currentEmotion][currentTextureIndex]}
         depthTest={false}
         polygonOffsetFactor={0}
@@ -174,13 +134,14 @@ function Model({ stage, mood }: ModelProps) {
 
 export default function PetModel({ stage, mood }: ModelProps) {
   return (
-    <div style={{ width: "300px", height: "300px" }}>
+    <div style={{ width: "300px", height: "300px", cursor: "pointer" }}>
       <Canvas 
       orthographic 
       camera={{ zoom: 100, position: [0, 0, 100] }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={4} />
+          <ambientLight intensity={2} />
+          <directionalLight position={[10, 10, 5]} intensity={1.5} />
           <Model stage={stage} mood={mood} />
         </Suspense>
       </Canvas>
