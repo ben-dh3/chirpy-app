@@ -19,7 +19,7 @@ export default function Signup() {
   const [signupState, signupAction] = useActionState(signup, initialSignupState);
 
   return (
-      <div className="m-4 gap-20 flex flex-col justify-center items-center min-h-screen">
+      <div className="gap-20 flex flex-col justify-center items-center min-h-screen">
         <h1 className={`${nunito_sans.className} text-center text-4xl font-bold antialiased`}>Create an account</h1>
         <form className="w-full space-y-4" action={signupAction}>
           <TextInput name="name" type="text" placeholder="Name" />

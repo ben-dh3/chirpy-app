@@ -15,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sen.className} antialiased p-12`}
+        className={`${sen.className} antialiased`}
       >
-        {children}
+        <div className="max-w-sm mx-auto p-12 min-h-screen">
+          {children}
+        </div>
       </body>
     </html>
   );

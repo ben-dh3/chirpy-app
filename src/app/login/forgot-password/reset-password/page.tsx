@@ -12,7 +12,7 @@ export default async function ResetPasswordPage({ searchParams }: { searchParams
 
   return (
     <Suspense fallback={
-      <div className="m-4 gap-20 flex flex-col justify-center items-center min-h-screen">
+      <div className="gap-20 flex flex-col justify-center items-center min-h-screen">
         <h1 className={`${nunito_sans.className} text-center text-4xl font-bold antialiased`}>Reset Password</h1>
         <p>Loading...</p>
       </div>

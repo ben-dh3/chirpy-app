@@ -34,14 +34,15 @@ export default async function Pet({ userId }: { userId: string }) {
   return (
     <div className="space-y-4">
       <PetModel stage={petData.stage} mood={mood} />
-      <Timer userId={userId} dailyGoal={getDailyGoal(petData.stage)} />
-      {canEvolve(petData.stage, petData.total_minutes) && (
+      {canEvolve(petData.stage, petData.total_minutes) ? (
         <form className="flex items-center justify-center" action={evolvePet.bind(null, userId)}>
           <button type="submit" className="cursor-pointer w-full bg-secondary-500 drop-shadow-evolve text-white p-2 rounded-2xl">
             Evolve
           </button>
         </form>
-      )}
+      ) : 
+      <Timer userId={userId} dailyGoal={getDailyGoal(petData.stage)} />
+      }
       <p>Stage: {petData.stage}</p>
       <p>Daily Goal Progress: {dailyProgress >= 0 ? dailyProgress + " min left" : "Daily Goal Completed"}</p>
       <p>Time Spent Today: {dailyTime} min</p>
