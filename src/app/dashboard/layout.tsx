@@ -1,7 +1,7 @@
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="p-12 max-w-sm mx-auto min-h-screen">
+    <div className="max-w-sm mx-auto min-h-screen">
       {children}
     </div>
   );

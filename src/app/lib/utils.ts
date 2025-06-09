@@ -9,8 +9,8 @@ export function isMissedDay(lastActive?: string): boolean {
   export function canEvolve(stage: string, totalMinutes: number): boolean {
     return (
       (stage === 'egg') ||
-      (stage === 'baby' && totalMinutes >= 100) ||
-      (stage === 'adolescent' && totalMinutes >= 300)
+      (stage === 'baby' && totalMinutes >= 10) ||
+      (stage === 'adolescent' && totalMinutes >= 30)
     );
   }
   
