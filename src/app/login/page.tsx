@@ -19,7 +19,7 @@ export default function Login() {
   const [loginState, loginAction] = useActionState(login, initialLoginState);
 
   return (
-    <div className="gap-20 flex flex-col justify-center items-center min-h-screen">
+    <div className="gap-20 flex flex-col w-full">
       <h1 className={`${nunito_sans.className} text-center text-4xl font-bold antialiased`}>Login</h1>
       <form className="w-full space-y-4" action={loginAction}>
         <TextInput name="email" type="text" placeholder="Email" />

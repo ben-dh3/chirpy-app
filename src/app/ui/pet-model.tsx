@@ -12,13 +12,12 @@ interface ModelProps {
   mood: Emotion;
 }
 
-
-
 function Model({ stage, mood }: ModelProps) {
   const { scene } = useGLTF(`/models/${stage}.glb`);
   const groupRef = useRef<THREE.Group>(null);
   const faceMeshRef = useRef<THREE.Mesh>(null!);
   // const { actions } = useAnimations(animations, groupRef);
+  const morphMeshRef = useRef<THREE.Mesh>(null);
   const [currentEmotion, setCurrentEmotion] = useState<Emotion>(mood);
   const [currentTextureIndex, setCurrentTextureIndex] = useState(0);
   const [meshReady, setMeshReady] = useState(false);
@@ -126,8 +125,6 @@ function Model({ stage, mood }: ModelProps) {
         rotation={[0, 0, 0]}
         scale={0.8}
         map={textures[currentEmotion][currentTextureIndex]}
-        depthTest={false}
-        polygonOffsetFactor={0}
       />
       )}
     </>

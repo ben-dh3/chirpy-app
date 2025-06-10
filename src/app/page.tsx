@@ -3,7 +3,7 @@ import Button from "./ui/button";
 
 export default function Home() {
   return (
-    <main className="gap-20 flex flex-col justify-center items-center min-h-screen">
+    <main className="gap-20 flex flex-col">
       <div className="space-y-4">
         <h1 className={`${nunito_sans.className} text-center text-4xl font-bold antialiased`}>Chirpy</h1>
         <p className="text-primary-400 text-center">Daily renewal with your self care songbird.</p>

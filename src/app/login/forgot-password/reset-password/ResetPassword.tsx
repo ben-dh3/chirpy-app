@@ -19,7 +19,7 @@ export default function ResetPassword({ code }: { code?: string }) {
 
   if (!code) {
     return (
-      <div className="m-4 gap-20 flex flex-col justify-center items-center min-h-screen">
+      <div className="m-4 gap-20 flex flex-col">
         <h1 className={`${nunito_sans.className} text-center text-4xl font-bold antialiased`}>Reset Password</h1>
         <p>Invalid or missing reset code.</p>
       </div>
@@ -27,7 +27,7 @@ export default function ResetPassword({ code }: { code?: string }) {
   }
 
   return (
-    <div className="m-4 gap-20 flex flex-col justify-center items-center min-h-screen">
+    <div className="m-4 gap-20 flex flex-col">
       <h1 className={`${nunito_sans.className} text-center text-4xl font-bold antialiased`}>Reset Password</h1>
       <form className="w-full space-y-4" action={formAction}>
         <input type="hidden" name="code" value={code} />

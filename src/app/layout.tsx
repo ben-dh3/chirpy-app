@@ -17,7 +17,7 @@ export default function RootLayout({
       <body
         className={`${sen.className} antialiased`}
       >
-        <div className="max-w-sm mx-auto p-12 min-h-screen">
+        <div className="flex max-w-sm mx-auto p-12 min-h-screen items-center justify-center">
           {children}
         </div>
       </body>
