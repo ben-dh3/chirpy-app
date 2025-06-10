@@ -132,7 +132,7 @@ function Model({ stage, mood }: ModelProps) {
 
 export default function PetModel({ stage, mood }: ModelProps) {
   return (
-    <div style={{ width: "300px", height: "300px", cursor: "pointer" }}>
+    <div className="cursor-pointer w-[300px] h-[300px]">
       <Canvas 
       orthographic 
       camera={{ zoom: 100, position: [0, 0, 100] }}

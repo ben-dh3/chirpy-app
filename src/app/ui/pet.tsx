@@ -43,6 +43,7 @@ export default async function Pet({ userId }: { userId: string }) {
       ) : 
       <Timer userId={userId} dailyGoal={getDailyGoal(petData.stage)} />
       }
+      
       <p>Stage: {petData.stage}</p>
       <p>Daily Goal Progress: {dailyProgress >= 0 ? dailyProgress + " min left" : "Daily Goal Completed"}</p>
       <p>Time Spent Today: {dailyTime} min</p>
