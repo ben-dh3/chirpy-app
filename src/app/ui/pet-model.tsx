@@ -17,7 +17,6 @@ function Model({ stage, mood }: ModelProps) {
   const groupRef = useRef<THREE.Group>(null);
   const faceMeshRef = useRef<THREE.Mesh>(null!);
   // const { actions } = useAnimations(animations, groupRef);
-  const morphMeshRef = useRef<THREE.Mesh>(null);
   const [currentEmotion, setCurrentEmotion] = useState<Emotion>(mood);
   const [currentTextureIndex, setCurrentTextureIndex] = useState(0);
   const [meshReady, setMeshReady] = useState(false);
