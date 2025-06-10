@@ -21,10 +21,16 @@ export default function Timer({ userId, dailyGoal }: { userId: string; dailyGoal
 
   return (
     <div className="space-y-4">
-      <p>
-        Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-      </p>
-      {message && <p className="text-green-500">{message}</p>}
+      <div className="relative flex flex-row items-center justify-center bg-secondary-450 p-3 text-white rounded-2xl">
+        <p className="absolute left-3 text-xs">
+        Time Remaining: 
+        </p>
+        <p className="text-md font-bold">
+          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+        </p>
+      </div>
+      
+      {message && <p className="text-white">{message}</p>}
       <div className="flex justify-between gap-4">
         { !isRunning ? 
         <button 
